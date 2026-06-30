@@ -32,9 +32,9 @@ func (e *Endpoint) Register(api huma.API) {
 		Method:      http.MethodGet,
 		Path:        "/oauth/health",
 		Summary:     "Get Oauth service health",
-	}, func(ctx context.Context, input *struct{}) (*HealthOutputDTO, error) {
-		return &HealthOutputDTO{
-			Body: HealthResponseDTO{
+	}, func(ctx context.Context, input *struct{}) (*OauthHealthOutputDTO, error) {
+		return &OauthHealthOutputDTO{
+			Body: OauthHealthResponseDTO{
 				Status:    "ok",
 				Timestamp: time.Now().UTC(),
 			},

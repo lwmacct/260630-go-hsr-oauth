@@ -2,11 +2,11 @@ package handler
 
 import "time"
 
-type HealthOutputDTO struct {
-	Body HealthResponseDTO
+type OauthHealthOutputDTO struct {
+	Body OauthHealthResponseDTO
 }
 
-type HealthResponseDTO struct {
+type OauthHealthResponseDTO struct {
 	Status    string    `json:"status"`
 	Timestamp time.Time `json:"timestamp"`
 }
