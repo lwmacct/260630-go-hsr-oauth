@@ -21,7 +21,11 @@ type OauthCallbackInputDTO struct {
 	State    string `query:"state"`
 }
 
-type OauthRedirectResponseDTO struct {
+type OauthStartRedirectResponseDTO struct {
+	Location string `header:"Location"`
+}
+
+type OauthCallbackRedirectResponseDTO struct {
 	Location  string `header:"Location"`
-	SetCookie string `header:"Set-Cookie,omitempty"`
+	SetCookie string `header:"Set-Cookie"`
 }

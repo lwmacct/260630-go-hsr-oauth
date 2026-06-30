@@ -34,7 +34,7 @@ func (h oauthHandler) configOutput(_ context.Context, _ *struct{}) (*BodyDTO[Oau
 	return &BodyDTO[OauthConfigDTO]{Body: body}, nil
 }
 
-func (h oauthHandler) start(ctx context.Context, input *OauthStartInputDTO) (*OauthRedirectResponseDTO, error) {
+func (h oauthHandler) start(ctx context.Context, input *OauthStartInputDTO) (*OauthStartRedirectResponseDTO, error) {
 	provider, err := utilProvider(h.config, input.Provider)
 	if err != nil {
 		return nil, huma.Error404NotFound("oauth provider unavailable")
@@ -49,12 +49,12 @@ func (h oauthHandler) start(ctx context.Context, input *OauthStartInputDTO) (*Oa
 		return nil, huma.Error500InternalServerError("internal server error")
 	}
 	redirectURI := utilOauthRedirectURI(h.config, request, provider.Name())
-	return &OauthRedirectResponseDTO{
+	return &OauthStartRedirectResponseDTO{
 		Location: provider.AuthorizationURL(state, redirectURI, flow.PKCECodeVerifier, flow.Nonce),
 	}, nil
 }
 
-func (h oauthHandler) callback(ctx context.Context, input *OauthCallbackInputDTO) (*OauthRedirectResponseDTO, error) {
+func (h oauthHandler) callback(ctx context.Context, input *OauthCallbackInputDTO) (*OauthCallbackRedirectResponseDTO, error) {
 	provider, err := utilProvider(h.config, input.Provider)
 	if err != nil {
 		return nil, huma.Error404NotFound("oauth provider unavailable")
@@ -86,7 +86,7 @@ func (h oauthHandler) callback(ctx context.Context, input *OauthCallbackInputDTO
 	if err != nil {
 		return nil, huma.Error500InternalServerError("internal server error")
 	}
-	return &OauthRedirectResponseDTO{
+	return &OauthCallbackRedirectResponseDTO{
 		Location:  utilSanitizeReturnTo(flow.ReturnTo),
 		SetCookie: session.SetCookie,
 	}, nil
