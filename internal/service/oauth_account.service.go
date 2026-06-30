@@ -33,7 +33,7 @@ func (s *OauthAccountService) ByProviderSubject(ctx context.Context, provider st
 	return &account, nil
 }
 
-func (s *OauthAccountService) Create(ctx context.Context, userID int64, profile OauthProfile) (*OauthAccount, error) {
+func (s *OauthAccountService) Create(ctx context.Context, userID string, profile OauthProfile) (*OauthAccount, error) {
 	now := time.Now().UTC()
 	item := repository.OauthAccountCreate{
 		UserID:                userID,
@@ -47,7 +47,7 @@ func (s *OauthAccountService) Create(ctx context.Context, userID int64, profile 
 		CreatedAt:             now,
 		UpdatedAt:             now,
 	}
-	if item.Provider == "" || item.Subject == "" || item.UserID == 0 {
+	if item.Provider == "" || item.Subject == "" || item.UserID == "" {
 		return nil, ErrOauthAccountTaken
 	}
 	row, err := s.store.CreateOauthAccount(ctx, item)
@@ -58,7 +58,7 @@ func (s *OauthAccountService) Create(ctx context.Context, userID int64, profile 
 	return &account, nil
 }
 
-func (s *OauthAccountService) DeleteForUsers(ctx context.Context, userIDs []int64) error {
+func (s *OauthAccountService) DeleteForUsers(ctx context.Context, userIDs []string) error {
 	if len(userIDs) == 0 {
 		return nil
 	}

@@ -3,11 +3,13 @@ package repository
 import (
 	"context"
 
+	"github.com/lwmacct/260630-go-hsr-shared/pkg/idgen"
 	"github.com/uptrace/bun"
 )
 
 func (s *Store) CreateOauthAccount(ctx context.Context, item OauthAccountCreate) (*OauthAccountRow, error) {
 	row := OauthAccountModel{
+		ID:                    idgen.NewUUID7(),
 		UserID:                item.UserID,
 		Provider:              item.Provider,
 		Subject:               item.Subject,
@@ -39,7 +41,7 @@ func (s *Store) FetchOauthAccountByProviderSubject(ctx context.Context, provider
 	return &result, nil
 }
 
-func (s *Store) DeleteOauthAccountForUsers(ctx context.Context, userIDs []int64) error {
+func (s *Store) DeleteOauthAccountForUsers(ctx context.Context, userIDs []string) error {
 	_, err := s.db.NewDelete().
 		Model((*OauthAccountModel)(nil)).
 		Where("user_id IN (?)", bun.List(userIDs)).

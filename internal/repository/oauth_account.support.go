@@ -3,7 +3,8 @@ package repository
 import "time"
 
 type OauthAccountCreate struct {
-	UserID                int64
+	ID                    string
+	UserID                string
 	Provider              string
 	Subject               string
 	ProviderEmail         string
@@ -16,8 +17,8 @@ type OauthAccountCreate struct {
 }
 
 type OauthAccountRow struct {
-	ID                    int64
-	UserID                int64
+	ID                    string
+	UserID                string
 	Provider              string
 	Subject               string
 	ProviderEmail         string

@@ -36,9 +36,9 @@ type Options struct {
 type RequestFunc func(context.Context) (auth.SessionRequest, bool)
 
 type Identity interface {
-	UserByID(ctx context.Context, id int64) (*auth.User, error)
+	UserByID(ctx context.Context, id string) (*auth.User, error)
 	CreateExternalUser(ctx context.Context, input auth.ExternalUserInput) (*auth.User, error)
-	CreateSession(ctx context.Context, userID int64, request auth.SessionRequest) (*auth.Session, error)
+	CreateSession(ctx context.Context, userID string, request auth.SessionRequest) (*auth.Session, error)
 }
 
 type Provider interface {

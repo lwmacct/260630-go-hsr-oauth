@@ -50,8 +50,8 @@
 
 | Field                   | Column                    | Go Type     | Attributes                         |
 | ----------------------- | ------------------------- | ----------- | ---------------------------------- |
-| `ID`                    | `id`                      | `int64`     | [pk, autoincrement]                |
-| `UserID`                | `user_id`                 | `int64`     | [notnull]                          |
+| `ID`                    | `id`                      | `string`    | [pk]                               |
+| `UserID`                | `user_id`                 | `string`    | [notnull]                          |
 | `Provider`              | `provider`                | `string`    | [notnull, unique:provider_subject] |
 | `Subject`               | `subject`                 | `string`    | [notnull, unique:provider_subject] |
 | `ProviderEmail`         | `provider_email`          | `string`    | [nullable]                         |

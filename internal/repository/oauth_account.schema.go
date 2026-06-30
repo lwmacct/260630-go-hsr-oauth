@@ -10,8 +10,8 @@ import (
 type OauthAccountModel struct {
 	bun.BaseModel `bun:"table:auth_oauth_accounts,alias:aoa"`
 
-	ID                    int64     `bun:"id,pk,autoincrement"`
-	UserID                int64     `bun:"user_id,notnull"`
+	ID                    string    `bun:"id,pk,type:uuid"`
+	UserID                string    `bun:"user_id,type:uuid,notnull"`
 	Provider              string    `bun:"provider,notnull,unique:provider_subject"`
 	Subject               string    `bun:"subject,notnull,unique:provider_subject"`
 	ProviderEmail         string    `bun:"provider_email,nullzero"`

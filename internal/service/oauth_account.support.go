@@ -8,8 +8,8 @@ import (
 )
 
 type OauthAccount struct {
-	ID                    int64
-	UserID                int64
+	ID                    string
+	UserID                string
 	Provider              string
 	Subject               string
 	ProviderEmail         string
