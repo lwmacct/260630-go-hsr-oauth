@@ -8,12 +8,11 @@
 
 ## APIs
 
-| Method | Full Path              | Mount | Operation Path         | Operation              | Tags  | Handler        | Register            | File                                  |
-| ------ | ---------------------- | ----- | ---------------------- | ---------------------- | ----- | -------------- | ------------------- | ------------------------------------- |
-| `GET`  | `/auth/oauth/callback` | `-`   | `/auth/oauth/callback` | `complete-oauth-login` | Oauth | `callback`     | `RegisterOauth`     | `internal/handler/oauth.handler.go`   |
-| `GET`  | `/auth/oauth/config`   | `-`   | `/auth/oauth/config`   | `get-oauth-config`     | Oauth | `configOutput` | `RegisterOauth`     | `internal/handler/oauth.handler.go`   |
-| `GET`  | `/auth/oauth/start`    | `-`   | `/auth/oauth/start`    | `start-oauth-login`    | Oauth | `start`        | `RegisterOauth`     | `internal/handler/oauth.handler.go`   |
-| `GET`  | `/oauth/health`        | `-`   | `/oauth/health`        | `get-oauth-health`     |       | `inline`       | `Endpoint.Register` | `internal/handler/x_http.endpoint.go` |
+| Method | Full Path              | Mount | Operation Path         | Operation              | Tags  | Handler        | Register        | File                                |
+| ------ | ---------------------- | ----- | ---------------------- | ---------------------- | ----- | -------------- | --------------- | ----------------------------------- |
+| `GET`  | `/auth/oauth/callback` | `-`   | `/auth/oauth/callback` | `complete-oauth-login` | Oauth | `callback`     | `RegisterOauth` | `internal/handler/oauth.handler.go` |
+| `GET`  | `/auth/oauth/config`   | `-`   | `/auth/oauth/config`   | `get-oauth-config`     | Oauth | `configOutput` | `RegisterOauth` | `internal/handler/oauth.handler.go` |
+| `GET`  | `/auth/oauth/start`    | `-`   | `/auth/oauth/start`    | `start-oauth-login`    | Oauth | `start`        | `RegisterOauth` | `internal/handler/oauth.handler.go` |
 
 ## Handlers
 
